@@ -1,7 +1,6 @@
 import express, { urlencoded } from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
-
 const app = express()
 
 app.use(cors({
@@ -14,4 +13,10 @@ app.use(urlencoded({ limit: '16kb', extended: true }))
 app.use(express.static('public'))
 app.use(cookieParser())
 
+// Router Import
+import userRouter from './routes/user.routes.js'
+// Router Decleration
+app.use('/api/v1/users', userRouter)
+
+// http://localhost:8000/api/v1/users/register
 export { app }

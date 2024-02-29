@@ -1,24 +1,30 @@
-import mongoose from "mongoose";
-import { DB_NAME } from "./constants.js";
 import dotenv from 'dotenv'
-import express from "express"
 import { connectToDb } from "./db/index.js";
-
+import { app } from "./app.js";
 dotenv.config({ path: './env' })
 
-const app = express()
+
 
 
 connectToDb()
     .then(() => {
+        console.log(`🥡MongoDb connection succesful🥡`)
+        try {
+            app.listen(process.env.PORT, () => {
+                console.log(`🏃app running successfully on port ${process.env.PORT}`);
+            })
 
-        app.listen(() => process.env.PORT)
-        console.log(`MongoDb running on port ${process.env.PORT}`)
+        } catch (error) {
+            console.log('Port running failed:::: ', error);
+        }
+
     })
     .catch((err) => {
         console.log(`MongoDb Connection Faild`, err);
     })
-
+app.get('/', (req, res) => {
+    res.send("<h1>Shakil<h1/>")
+})
 
 /*
     (async () => {
