@@ -6,7 +6,7 @@ import { ApiResponse } from "../utils/apiResponse.js"
 
 const registerUser = asyncHandler(async (req, res) => {
     // get user information from frontend
-    // validaton - not empty
+    // validation - not empty
     // check if user already exist- username, email
     // check for images, check for avatar
     // upload them to cloudinary, avatar
@@ -36,12 +36,12 @@ const registerUser = asyncHandler(async (req, res) => {
 
     // check user avatar and coverimage
     // Avatar file path reference
-    const avatartLocalPath = req?.files?.avatar[0]?.path;
+    const avatarLocalPath = req?.files?.avatar[0]?.path;
     // coverImage file path reference
     const coverImageLocalPath = req?.files?.coverImage[0]?.path;
     // console.log(avatartLocalPath, coverImageLocalPath)
 
-    if (!avatartLocalPath) {
+    if (!avatarLocalPath) {
         throw new ApiError(400, 'Avatar file is required');
     }
 
